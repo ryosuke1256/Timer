@@ -6,7 +6,7 @@
 
 ## 画面設計
 
-[画面設計](https://github.com/ryosuke1256/wireframe/blob/main/timer%20Mac1440%C3%97900.png)
+<img src="https://github.com/ryosuke1256/wireframe/blob/main/timer%20Mac1440%C3%97900.png" width=300px>
 
 ## 機能
 
