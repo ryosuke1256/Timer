@@ -4,6 +4,10 @@
 - git Issue をプルリクで閉じるのやってみる
 - ３日以内に作りきる
 
+## 画面設計書
+
+[画面設計書](https://github.com/ryosuke1256/wireframe/blob/main/timer%20Mac1440%C3%97900.png)
+
 ## 機能
 
 - ストップウォッチ
