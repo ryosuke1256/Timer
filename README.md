@@ -30,8 +30,12 @@
 
 - PWA
 - Next.js TypeScript
-- SSR,SSG
+- SSG
 - バックエンド使う気なし
 - 超絶シンプルでとりあえず出して収益を得る感覚を得ることが目的
 - 独自ドメインを取得したい
 - FirebaseHosting 無料枠で行く
+
+## ホスティングサービス
+
+- vercel
