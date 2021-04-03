@@ -11,6 +11,7 @@ const index: React.FC = () => {
     <>
       <Head>
         <title>Timer</title>
+        <meta name="description" content="クールでシンプルなTimerアプリです" />
       </Head>
       <DynamicComponentWithNoSSR />
     </>
