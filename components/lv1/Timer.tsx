@@ -1,5 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useState } from 'react';
+
+const Style = styled.div`
+  color: red;
+`;
 
 const Timer = () => {
   const now = new Date();
@@ -13,12 +18,12 @@ const Timer = () => {
     setSec(now.getSeconds());
   }, 1000);
   return (
-    <>
+    <Style>
       <div>Timer</div>
       <div>
         {hour}時{min}分{sec}秒
       </div>
-    </>
+    </Style>
   );
 };
 
