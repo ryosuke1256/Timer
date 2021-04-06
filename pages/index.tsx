@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import Title from '../components/lv1/Title';
+import Timer from '../components/lv2/Timer';
 
 const index: React.FC = () => {
   const DynamicComponentWithNoSSR = dynamic(() => import('../components/lv1/Clock'), {
@@ -16,6 +17,7 @@ const index: React.FC = () => {
       </Head>
       <Title />
       <DynamicComponentWithNoSSR />
+      <Timer />
     </>
   );
 };
