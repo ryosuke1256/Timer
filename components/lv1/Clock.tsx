@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 const Style = styled.div`
-  color: red;
+  font-size: 5rem;
+  color: #e5e5e5;
 `;
 
-const Timer = () => {
+const Clock: React.VFC = () => {
   const now = new Date();
   const [hour, setHour] = useState(now.getHours());
   const [min, setMin] = useState(now.getMinutes());
@@ -19,12 +20,9 @@ const Timer = () => {
   }, 1000);
   return (
     <Style>
-      <div>Timer</div>
-      <div>
-        {hour}時{min}分{sec}秒
-      </div>
+      {hour}時{min}分{sec}秒
     </Style>
   );
 };
 
-export default Timer;
+export default Clock;
