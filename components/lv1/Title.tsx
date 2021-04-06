@@ -7,7 +7,7 @@ const Style = styled.div`
 `;
 
 const Title: React.VFC = () => {
-  return <Style>Clock</Style>;
+  return <Style>現在時刻</Style>;
 };
 
 export default Title;
