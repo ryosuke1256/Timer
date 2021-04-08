@@ -1,14 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
+import styled from 'styled-components';
 import Button from '../lv1/Button';
 import TimeCount from '../lv1/TimeCount';
-import Log from '../lv1/Log';
+import Text from '../lv1/Text';
 
 const Timer: React.VFC = () => {
   const [word, setWord] = useState('');
   const [countStart, setCountStart] = useState(false);
-  const [slctSec, setSlctSec] = useState<number>(null);
-  const [slctMin, setSlctMin] = useState<number>(null);
+  const [slctSec, setSlctSec] = useState<number>(0);
+  const [slctMin, setSlctMin] = useState<number>(0);
 
   const log = (sec, min) => {
     console.log('log');
@@ -19,8 +20,6 @@ const Timer: React.VFC = () => {
     }
     sound('sign', 1);
   };
-
-  const countdown = (sec, min) => {};
 
   const click = (setTime: number) => {
     setCountStart(true);
@@ -34,7 +33,6 @@ const Timer: React.VFC = () => {
       setSlctMin(min);
     }
     setTimeout(() => log(sec, min), setTime);
-    setInterval(() => countdown(sec, min), 1000);
   };
 
   const sound = (type, sec) => {
@@ -53,9 +51,14 @@ const Timer: React.VFC = () => {
       <Button click={click} time={'10分'} setTime={600000} />
       <Button click={click} time={'50分'} setTime={3000000} />
       <TimeCount countStart={countStart} slctSec={slctSec} slctMin={slctMin} />
-      <Log word={word} />
+      <Text Text={word} Style={Style} />
     </>
   );
 };
 
 export default Timer;
+
+const Style = styled.div`
+  font-size: 3rem;
+  color: #e5e5e5;
+`;
