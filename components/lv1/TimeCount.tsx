@@ -29,7 +29,15 @@ const TimeCount: React.VFC<Props> = ({ countStart, slctSec, slctMin }: Props) =>
     }, 1000);
   }, [sec]);
 
-  return <Style>{`残り${min}:${sec}`}</Style>;
+  if (sec < 10 && min < 10) {
+    return <Style>{`残り0${min}:0${sec}`}</Style>;
+  } else if (sec < 10) {
+    return <Style>{`残り${min}:0${sec}`}</Style>;
+  } else if (min < 10) {
+    return <Style>{`残り0${min}:${sec}`}</Style>;
+  } else {
+    return <Style>{`残り${min}:${sec}`}</Style>;
+  }
 };
 
 export default TimeCount;
