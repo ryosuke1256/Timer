@@ -5,15 +5,20 @@ import Log from '../lv1/Log';
 
 const Timer: React.VFC = () => {
   const [word, setWord] = useState('');
-  const log = () => {
+
+  const log = (setTime) => {
     console.log('a');
-    setWord('３秒経過しました');
+    if (setTime < 60000) {
+      setWord(`${setTime / 1000}秒経過しました`);
+    } else if (setTime < 3600000) {
+      setWord(`${setTime / 60000}分経過しました`);
+    }
     sound('sign', 1);
   };
 
   const click = (setTime: number) => {
     console.log('click');
-    setTimeout(log, setTime);
+    setTimeout(() => log(setTime), setTime);
   };
 
   const sound = (type, sec) => {
@@ -30,6 +35,7 @@ const Timer: React.VFC = () => {
     <>
       <Button click={click} time={'3秒'} setTime={3000} />
       <Button click={click} time={'10分'} setTime={600000} />
+      <Button click={click} time={'50分'} setTime={3000000} />
       <Log word={word} />
     </>
   );
