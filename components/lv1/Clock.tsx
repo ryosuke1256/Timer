@@ -2,11 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
 
-const Style = styled.div`
-  font-size: 5rem;
-  color: #e5e5e5;
-`;
-
 const Clock: React.VFC = () => {
   const now = new Date();
   const [hour, setHour] = useState(now.getHours());
@@ -26,3 +21,8 @@ const Clock: React.VFC = () => {
 };
 
 export default Clock;
+
+const Style = styled.div`
+  font-size: 2rem;
+  color: #e5e5e5;
+`;
