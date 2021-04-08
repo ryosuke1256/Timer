@@ -16,17 +16,16 @@ const TimeCount: React.VFC<Props> = ({ countStart, slctSec, slctMin }: Props) =>
   const [sec, setSec] = useState(slctSec);
   const [min, setMin] = useState(slctMin);
 
-  console.log(sec);
-  console.log(min);
-
-  setTimeout(() => {
-    if (sec === 0) {
-      setSec(59);
-      setMin(min - 1);
-    } else {
-      setSec(sec - 1);
-    }
-  }, 1000);
+  useEffect(() => {
+    setTimeout(() => {
+      if (sec === 0) {
+        setMin(min - 1);
+        setSec(59);
+      } else {
+        setSec(sec - 1);
+      }
+    }, 1000);
+  }, [sec]);
 
   return <Style>{`残り${min}:${sec}`}</Style>;
 };

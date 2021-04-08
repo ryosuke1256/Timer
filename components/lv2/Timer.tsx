@@ -30,7 +30,7 @@ const Timer: React.VFC = () => {
     if (sec < 60) {
       setSlctSec(sec);
     } else if (min < 60) {
-      setSlctSec(60);
+      setSlctSec(0);
       setSlctMin(min);
     }
     setTimeout(() => log(sec, min), setTime);
