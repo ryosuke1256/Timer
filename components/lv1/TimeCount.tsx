@@ -18,7 +18,9 @@ const TimeCount: React.VFC<Props> = ({ countStart, slctSec, slctMin }: Props) =>
 
   useEffect(() => {
     setTimeout(() => {
-      if (sec === 0) {
+      if (sec === 0 && min === 0) {
+        return;
+      } else if (sec === 0) {
         setMin(min - 1);
         setSec(59);
       } else {
