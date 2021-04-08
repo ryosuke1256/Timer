@@ -32,6 +32,7 @@ const Timer: React.VFC = () => {
       setSlctSec(0);
       setSlctMin(min);
     }
+    console.log(setTime);
     setTimeout(() => log(sec, min), setTime);
   };
 
