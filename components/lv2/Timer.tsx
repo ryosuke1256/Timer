@@ -11,9 +11,9 @@ const Timer: React.VFC = () => {
     sound('sign', 1);
   };
 
-  const click: VoidFunction = () => {
-    console.log(click);
-    setTimeout(log, 3000);
+  const click = (setTime: number) => {
+    console.log('click');
+    setTimeout(log, setTime);
   };
 
   const sound = (type, sec) => {
@@ -28,7 +28,8 @@ const Timer: React.VFC = () => {
 
   return (
     <>
-      <Button click={click} />
+      <Button click={click} time={'3秒'} setTime={3000} />
+      <Button click={click} time={'10分'} setTime={600000} />
       <Log word={word} />
     </>
   );
