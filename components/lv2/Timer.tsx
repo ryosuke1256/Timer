@@ -6,7 +6,9 @@ import Log from '../lv1/Log';
 
 const Timer: React.VFC = () => {
   const [word, setWord] = useState('');
-  const [slctSec, setSlctSec] = useState<number | null>(null);
+  const [countStart, setCountStart] = useState(false);
+  const [slctSec, setSlctSec] = useState<number>(null);
+  const [slctMin, setSlctMin] = useState<number>(null);
 
   const log = (sec, min) => {
     console.log('log');
@@ -21,10 +23,16 @@ const Timer: React.VFC = () => {
   const countdown = (sec, min) => {};
 
   const click = (setTime: number) => {
+    setCountStart(true);
     console.log('click');
     const sec = setTime / 1000;
-    setSlctSec(sec);
     const min = setTime / 60000;
+    if (sec < 60) {
+      setSlctSec(sec);
+    } else if (min < 60) {
+      setSlctSec(60);
+      setSlctMin(min);
+    }
     setTimeout(() => log(sec, min), setTime);
     setInterval(() => countdown(sec, min), 1000);
   };
@@ -44,7 +52,7 @@ const Timer: React.VFC = () => {
       <Button click={click} time={'3秒'} setTime={3000} />
       <Button click={click} time={'10分'} setTime={600000} />
       <Button click={click} time={'50分'} setTime={3000000} />
-      <TimeCount slctSec={slctSec} />
+      <TimeCount countStart={countStart} slctSec={slctSec} slctMin={slctMin} />
       <Log word={word} />
     </>
   );
