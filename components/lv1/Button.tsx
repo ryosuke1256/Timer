@@ -2,22 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 type Props = {
-  click: VoidFunction;
+  click: (setTime: number) => void;
+  time: string;
+  setTime: number;
 };
 
-const Button: React.VFC<Props> = ({ click }: Props) => {
-  const start = () => {
-    console.log('計測開始');
-  };
-
+const Button: React.VFC<Props> = ({ click, time, setTime }: Props) => {
   return (
     <Style>
-      <input
-        style={{ color: 'white' }}
-        type="button"
-        value="3秒測るボタン"
-        onClick={() => click()}
-      />
+      <input style={{ color: 'white' }} type="button" value={time} onClick={() => click(setTime)} />
     </Style>
   );
 };
