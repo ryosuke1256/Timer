@@ -3,22 +3,32 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 type Props = {
+  countStart: boolean;
   slctSec: number | null;
+  slctMin: number | null;
 };
 
-const TimeCount: React.VFC<Props> = ({ slctSec }: Props) => {
-  if (!slctSec) {
+//無駄なreder減らすためにslctMin,slctSecとsec,min分けてる
+const TimeCount: React.VFC<Props> = ({ countStart, slctSec, slctMin }: Props) => {
+  if (!countStart) {
     return null;
   }
-  const [time, setTime] = useState(slctSec);
+  const [sec, setSec] = useState(slctSec);
+  const [min, setMin] = useState(slctMin);
 
-  console.log(time);
+  console.log(sec);
+  console.log(min);
 
   setTimeout(() => {
-    setTime(time - 1);
+    if (sec === 0) {
+      setSec(59);
+      setMin(min - 1);
+    } else {
+      setSec(sec - 1);
+    }
   }, 1000);
 
-  return <Style>{`残り${time}秒`}</Style>;
+  return <Style>{`残り${min}:${sec}`}</Style>;
 };
 
 export default TimeCount;
