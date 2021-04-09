@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import Button from '../lv1/Button';
 import TimeCount from '../lv1/TimeCount';
 import Text from '../lv1/Text';
-import NewTimeCount from '../lv1/NewTimeCount';
-import Ref from '../lv1/Ref';
 
 const Timer: React.VFC = () => {
   const [word, setWord] = useState('');
@@ -90,7 +88,6 @@ const Timer: React.VFC = () => {
       />
       {/* <NewTimeCount countStart={countStart} slctSec={slctSec} slctMin={slctMin} /> */}
       <Text Text={word} Style={Style} />
-      {/* <Ref /> */}
     </>
   );
 };
