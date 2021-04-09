@@ -4,12 +4,17 @@ import styled from 'styled-components';
 import Button from '../lv1/Button';
 import TimeCount from '../lv1/TimeCount';
 import Text from '../lv1/Text';
+import NewTimeCount from '../lv1/NewTimeCount';
+import Ref from '../lv1/Ref';
 
 const Timer: React.VFC = () => {
   const [word, setWord] = useState('');
   const [countStart, setCountStart] = useState(false);
   const [slctSec, setSlctSec] = useState<number>(0);
   const [slctMin, setSlctMin] = useState<number>(0);
+  const [selectTimer, setSelectTimer] = useState<number>(0);
+  const [timerChange, setTimerChange] = useState<boolean>(false);
+  let something = 1;
 
   const log = (sec, min) => {
     console.log('log');
@@ -22,6 +27,9 @@ const Timer: React.VFC = () => {
   };
 
   const click = (setTime: number) => {
+    if (countStart === true) {
+      something++;
+    }
     setCountStart(true);
     console.log('click');
     const sec = setTime / 1000;
@@ -48,11 +56,41 @@ const Timer: React.VFC = () => {
 
   return (
     <>
-      <Button click={click} time={'3秒'} setTime={3000} />
-      <Button click={click} time={'10分'} setTime={600000} />
-      <Button click={click} time={'50分'} setTime={3000000} />
-      <TimeCount countStart={countStart} slctSec={slctSec} slctMin={slctMin} />
+      <Button
+        timerChange={timerChange}
+        setTimerChange={setTimerChange}
+        setSelectTimer={setSelectTimer}
+        click={click}
+        time={'3秒'}
+        setTime={3000}
+      />
+      <Button
+        timerChange={timerChange}
+        setTimerChange={setTimerChange}
+        setSelectTimer={setSelectTimer}
+        click={click}
+        time={'10分'}
+        setTime={600000}
+      />
+      <Button
+        timerChange={timerChange}
+        setTimerChange={setTimerChange}
+        setSelectTimer={setSelectTimer}
+        click={click}
+        time={'50分'}
+        setTime={3000000}
+      />
+      <TimeCount
+        setTimerChange={setTimerChange}
+        timerChange={timerChange}
+        selectTimer={selectTimer}
+        countStart={countStart}
+        slctSec={slctSec}
+        slctMin={slctMin}
+      />
+      {/* <NewTimeCount countStart={countStart} slctSec={slctSec} slctMin={slctMin} /> */}
       <Text Text={word} Style={Style} />
+      {/* <Ref /> */}
     </>
   );
 };

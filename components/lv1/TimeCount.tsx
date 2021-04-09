@@ -1,23 +1,39 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 type Props = {
+  setTimerChange: any;
+  timerChange: boolean;
+  selectTimer: number;
   countStart: boolean;
   slctSec: number | null;
   slctMin: number | null;
 };
 
 //無駄なreder減らすためにslctMin,slctSecとsec,min分けてる
-const TimeCount: React.VFC<Props> = ({ countStart, slctSec, slctMin }: Props) => {
+const TimeCount: React.VFC<Props> = ({
+  setTimerChange,
+  timerChange,
+  selectTimer,
+  countStart,
+  slctSec,
+  slctMin,
+}: Props) => {
   if (!countStart) {
     return null;
   }
   const [sec, setSec] = useState(slctSec);
   const [min, setMin] = useState(slctMin);
+  const [seconds, setSeconds] = useState(selectTimer / 1000);
+  const [timeoutID, setTimeoutID] = useState(null);
+
+  // const countRef = useRef(0);
+  // countRef.current = selectTimer;
+  // console.log(countRef);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutID = setTimeout(() => {
       if (sec === 0 && min === 0) {
         return;
       } else if (sec === 0) {
@@ -26,8 +42,26 @@ const TimeCount: React.VFC<Props> = ({ countStart, slctSec, slctMin }: Props) =>
       } else {
         setSec(sec - 1);
       }
+      console.log(sec);
     }, 1000);
+    setTimeoutID(timeoutID);
+    // if (timerChange) {
+    //   cancel(timeoutID);
+    // }
   }, [sec]);
+
+  useEffect(() => {
+    setSeconds(selectTimer / 1000);
+    setMin(selectTimer / 60000);
+    setSec(selectTimer % 60000);
+
+    //ここで前のタイマーを止めないといけない
+    //これでいけた
+    clearTimeout(timeoutID);
+  }, [timerChange]);
+
+  // const cancel = (timeoutID) => {
+  // };
 
   if (sec < 10 && min < 10) {
     return <Style>{`残り0${min}:0${sec}`}</Style>;
