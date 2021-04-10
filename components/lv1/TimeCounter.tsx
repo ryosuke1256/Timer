@@ -4,8 +4,6 @@ import styled from 'styled-components';
 
 type Props = {
   timerChange: boolean;
-  timerActive: boolean;
-  setTimerActive: any;
   selectTimer: number;
   countStart: boolean;
   slctSec: number | null;
@@ -14,8 +12,6 @@ type Props = {
 
 const TimeCount: React.VFC<Props> = ({
   timerChange,
-  timerActive,
-  setTimerActive,
   selectTimer,
   countStart,
   slctSec,
@@ -26,14 +22,11 @@ const TimeCount: React.VFC<Props> = ({
   }
   const [sec, setSec] = useState(slctSec);
   const [min, setMin] = useState(slctMin);
-  const [timeoutID, setTimeoutID] = useState(null);
+  const [timeoutID, setTimeoutID] = useState<NodeJS.Timeout>(null);
   const [timerStart, setTimerStart] = useState(0);
 
   useEffect(() => {
-    console.log('a');
     const timeoutID = setTimeout(() => {
-      console.log('b');
-      console.log({ min, sec });
       if (sec === 0 && min === 0) {
         return;
       } else if (sec === 0) {
@@ -48,7 +41,6 @@ const TimeCount: React.VFC<Props> = ({
   }, [sec, timerStart]);
 
   useEffect(() => {
-    console.log('timerchange');
     if (selectTimer < 60000) {
       setSec(selectTimer / 1000);
       setMin(0);
@@ -58,8 +50,6 @@ const TimeCount: React.VFC<Props> = ({
       //useEffect [sec,min]で呼び出すとバグる[sec]だと動かない timeStartで呼び出す
       setTimerStart(timerStart + 1);
     }
-    console.log(timerChange);
-
     //前のタイマーの処理を止める必要があった
     clearTimeout(timeoutID);
   }, [timerChange]);

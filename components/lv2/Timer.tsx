@@ -12,7 +12,6 @@ const Timer: React.VFC = () => {
   const [slctMin, setSlctMin] = useState<number>(0);
   const [selectTimer, setSelectTimer] = useState<number>(0);
   const [timerChange, setTimerChange] = useState<boolean>(false);
-  const [timerActive, setTimerActive] = useState<boolean>(false);
 
   const log = (sec: number, min: number): void => {
     console.log('log');
@@ -21,7 +20,6 @@ const Timer: React.VFC = () => {
     } else if (min < 60) {
       setWord(`${min}分経過しました`);
     }
-    setTimerActive(false);
     sound('sign', 1);
   };
 
@@ -82,8 +80,6 @@ const Timer: React.VFC = () => {
       />
       <TimeCounter
         timerChange={timerChange}
-        timerActive={timerActive}
-        setTimerActive={setTimerActive}
         selectTimer={selectTimer}
         countStart={countStart}
         slctSec={slctSec}
