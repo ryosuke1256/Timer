@@ -28,10 +28,6 @@ const TimeCount: React.VFC<Props> = ({
   const [seconds, setSeconds] = useState(selectTimer / 1000);
   const [timeoutID, setTimeoutID] = useState(null);
 
-  // const countRef = useRef(0);
-  // countRef.current = selectTimer;
-  // console.log(countRef);
-
   useEffect(() => {
     const timeoutID = setTimeout(() => {
       if (sec === 0 && min === 0) {
@@ -45,23 +41,22 @@ const TimeCount: React.VFC<Props> = ({
       console.log(sec);
     }, 1000);
     setTimeoutID(timeoutID);
-    // if (timerChange) {
-    //   cancel(timeoutID);
-    // }
   }, [sec]);
 
   useEffect(() => {
-    setSeconds(selectTimer / 1000);
-    setMin(selectTimer / 60000);
-    setSec(selectTimer % 60000);
+    if (selectTimer < 60000) {
+      setSec(selectTimer / 1000);
+      setMin(0);
+    } else {
+      setSeconds(selectTimer / 1000);
+      setMin(selectTimer / 60000);
+      setSec(selectTimer % 60000);
+    }
 
     //ここで前のタイマーを止めないといけない
     //これでいけた
     clearTimeout(timeoutID);
   }, [timerChange]);
-
-  // const cancel = (timeoutID) => {
-  // };
 
   if (sec < 10 && min < 10) {
     return <Style>{`残り0${min}:0${sec}`}</Style>;
