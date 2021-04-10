@@ -45,8 +45,8 @@ const TimeCount: React.VFC<Props> = ({
       setSec(selectTimer / 1000);
       setMin(0);
     } else {
+      setSec((selectTimer % 60000) / 1000);
       setMin(selectTimer / 60000);
-      setSec(selectTimer % 60000);
     }
     //前のタイマーの処理を止める必要があった
     clearTimeout(timeoutID);
