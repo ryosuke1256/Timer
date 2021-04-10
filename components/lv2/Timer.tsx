@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../lv1/Button';
-import TimeCount from '../lv1/TimeCount';
+import TimeCounter from '../lv1/TimeCounter';
 import Text from '../lv1/Text';
 
 const Timer: React.VFC = () => {
@@ -12,9 +12,8 @@ const Timer: React.VFC = () => {
   const [slctMin, setSlctMin] = useState<number>(0);
   const [selectTimer, setSelectTimer] = useState<number>(0);
   const [timerChange, setTimerChange] = useState<boolean>(false);
-  let something = 1;
 
-  const log = (sec, min) => {
+  const log = (sec: number, min: number): void => {
     console.log('log');
     if (sec < 60) {
       setWord(`${sec}秒経過しました`);
@@ -24,10 +23,7 @@ const Timer: React.VFC = () => {
     sound('sign', 1);
   };
 
-  const click = (setTime: number) => {
-    if (countStart === true) {
-      something++;
-    }
+  const click = (setTime: number): void => {
     setCountStart(true);
     console.log('click');
     const sec = setTime / 1000;
@@ -42,7 +38,7 @@ const Timer: React.VFC = () => {
     setTimeout(() => log(sec, min), setTime);
   };
 
-  const sound = (type, sec) => {
+  const sound = (type: any, sec: number): void => {
     console.log('soundが鳴りました');
     const ctx = new AudioContext();
     const osc = ctx.createOscillator();
@@ -78,7 +74,7 @@ const Timer: React.VFC = () => {
         time={'50分'}
         setTime={3000000}
       />
-      <TimeCount
+      <TimeCounter
         timerChange={timerChange}
         selectTimer={selectTimer}
         countStart={countStart}
