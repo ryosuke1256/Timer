@@ -79,7 +79,6 @@ const Timer: React.VFC = () => {
         setTime={3000000}
       />
       <TimeCount
-        setTimerChange={setTimerChange}
         timerChange={timerChange}
         selectTimer={selectTimer}
         countStart={countStart}
