@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '../lv1/Button';
 import TimeCounter from '../lv1/TimeCounter';
@@ -12,6 +12,7 @@ const Timer: React.VFC = () => {
   const [slctMin, setSlctMin] = useState<number>(0);
   const [selectTimer, setSelectTimer] = useState<number>(0);
   const [timerChange, setTimerChange] = useState<boolean>(false);
+  const [timerActive, setTimerActive] = useState<boolean>(false);
 
   const log = (sec: number, min: number): void => {
     console.log('log');
@@ -20,8 +21,13 @@ const Timer: React.VFC = () => {
     } else if (min < 60) {
       setWord(`${min}分経過しました`);
     }
+    setTimerActive(false);
     sound('sign', 1);
   };
+
+  useEffect(() => {
+    setWord('');
+  }, [timerChange]);
 
   const click = (setTime: number): void => {
     setCountStart(true);
@@ -76,12 +82,13 @@ const Timer: React.VFC = () => {
       />
       <TimeCounter
         timerChange={timerChange}
+        timerActive={timerActive}
+        setTimerActive={setTimerActive}
         selectTimer={selectTimer}
         countStart={countStart}
         slctSec={slctSec}
         slctMin={slctMin}
       />
-      {/* <NewTimeCount countStart={countStart} slctSec={slctSec} slctMin={slctMin} /> */}
       <Text Text={word} Style={Style} />
     </>
   );
