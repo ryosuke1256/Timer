@@ -40,14 +40,17 @@ const Timer: React.VFC = () => {
     }
     console.log(setTime);
     setTimeout(() => {
-      log(sec, min);
       sound('sign', 1);
+      log(sec, min);
     }, setTime);
   };
 
   const sound = (type: any, sec: number): void => {
     console.log('soundが鳴りました');
-    const ctx = new AudioContext();
+    //Property 'webkitAudioContext' does not exist on type 'Window & typeof globalThis'
+    //が表示されるのでanyで退避
+    var ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+    // const ctx = new AudioContext();
     const osc = ctx.createOscillator();
     osc.type = type;
     osc.connect(ctx.destination);
