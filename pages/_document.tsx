@@ -19,7 +19,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#68d391" />
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" sizes="192x192" href="../public/images/clock192.png" />
-          <link rel="apple-touch-icon" href="%PUBLIC_URL%/clock192.png" sizes="192x192" />
+          <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/clock192.png" sizes="192x192" />
         </Head>
         <body>
           <Main />
