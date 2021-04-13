@@ -39,7 +39,10 @@ const Timer: React.VFC = () => {
       setSlctMin(min);
     }
     console.log(setTime);
-    setTimeout(() => log(sec, min), setTime);
+    setTimeout(() => {
+      log(sec, min);
+      sound('sign', 1);
+    }, setTime);
   };
 
   const sound = (type: any, sec: number): void => {
