@@ -51,7 +51,7 @@ const Timer: React.VFC = () => {
     const osc = ctx.createOscillator();
     osc.type = type;
     osc.connect(ctx.destination);
-    osc.start(0);
+    osc.start(ctx.currentTime);
     osc.stop(sec);
   };
 
