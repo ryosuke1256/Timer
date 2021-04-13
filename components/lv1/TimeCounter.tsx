@@ -41,6 +41,7 @@ const TimeCount: React.VFC<Props> = ({
   }, [sec, timerStart]);
 
   useEffect(() => {
+    //1分未満なら
     if (selectTimer < 60000) {
       setSec(selectTimer / 1000);
       setMin(0);
