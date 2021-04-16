@@ -18,6 +18,19 @@ const Button: React.VFC<Props> = ({
   time,
   setTime,
 }: Props) => {
+  const sound = (type: any, sec: number): void => {
+    console.log('soundが鳴りました');
+    //Property 'webkitAudioContext' does not exist on type 'Window & typeof globalThis'
+    //が表示されるのでanyで退避
+    var ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+    // const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    osc.type = type;
+    osc.connect(ctx.destination);
+    osc.start(ctx.currentTime);
+    osc.stop(sec);
+  };
+
   return (
     <Style>
       <input
@@ -25,6 +38,7 @@ const Button: React.VFC<Props> = ({
         type="button"
         value={time}
         onClick={() => {
+          sound('sign', 1);
           click(setTime);
           setSelectTimer(setTime);
           setTimerChange(!timerChange);
