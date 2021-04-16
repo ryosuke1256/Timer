@@ -38,7 +38,7 @@ const Button: React.VFC<Props> = ({
         type="button"
         value={time}
         onClick={() => {
-          sound('sign', 1);
+          sound('sign', 1), 2000;
           click(setTime);
           setSelectTimer(setTime);
           setTimerChange(!timerChange);
