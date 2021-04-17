@@ -40,14 +40,11 @@ const Timer: React.VFC = () => {
       setSlctMin(min);
     }
     console.log(setTime);
-    if (active) {
-      useEffect(() => {
-        setTimeout(() => {
-          sound('sign', 1);
-          log(sec, min);
-        }, setTime);
-      }, [active]);
-    }
+
+    setTimeout(() => {
+      sound('sign', 1);
+      log(sec, min);
+    }, setTime);
   };
 
   const sound = (type: any, sec: number): void => {
