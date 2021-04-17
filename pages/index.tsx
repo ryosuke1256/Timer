@@ -20,6 +20,7 @@ const index: React.FC = () => {
       <DynamicComponentWithNoSSR />
       <Timer />
       <Navigation />
+      <audio src="./images/alarm.mp3" controls />
     </>
   );
 };
