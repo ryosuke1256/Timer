@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Button from '../lv1/Button';
 import TimeCounter from '../lv1/TimeCounter';
 import Text from '../lv1/Text';
@@ -13,6 +13,18 @@ const Timer: React.VFC = () => {
   const [slctMin, setSlctMin] = useState<number>(0);
   const [selectTimer, setSelectTimer] = useState<number>(0);
   const [timerChange, setTimerChange] = useState<boolean>(false);
+
+  const audioContext = useRef(null);
+
+  function initAudioContext(type, sec, audioContext) {
+    var audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    // const audioContext = new AudioContext();
+    const osc = audioContext.createOscillator();
+    osc.connect(audioContext.destination);
+    osc.type = type;
+    osc.start();
+    osc.stop(sec);
+  }
 
   const log = (sec: number, min: number): void => {
     console.log('log');
@@ -42,7 +54,8 @@ const Timer: React.VFC = () => {
     console.log(setTime);
 
     setTimeout(() => {
-      sound('sign', 1);
+      // sound('sign', 1);
+      initAudioContext('sign', 1, audioContext);
       log(sec, min);
     }, setTime);
   };
@@ -63,6 +76,8 @@ const Timer: React.VFC = () => {
   return (
     <>
       <Button
+        audioContext={audioContext}
+        initAudioContext={initAudioContext}
         timerChange={timerChange}
         setTimerChange={setTimerChange}
         setSelectTimer={setSelectTimer}
@@ -71,6 +86,8 @@ const Timer: React.VFC = () => {
         setTime={3000}
       />
       <Button
+        audioContext={audioContext}
+        initAudioContext={initAudioContext}
         timerChange={timerChange}
         setTimerChange={setTimerChange}
         setSelectTimer={setSelectTimer}
@@ -79,6 +96,8 @@ const Timer: React.VFC = () => {
         setTime={600000}
       />
       <Button
+        audioContext={audioContext}
+        initAudioContext={initAudioContext}
         timerChange={timerChange}
         setTimerChange={setTimerChange}
         setSelectTimer={setSelectTimer}

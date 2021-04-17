@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 type Props = {
+  audioContext: any;
+  initAudioContext: any;
   timerChange: any;
   setTimerChange: any;
   setSelectTimer: any;
@@ -11,6 +13,8 @@ type Props = {
 };
 
 const Button: React.VFC<Props> = ({
+  audioContext,
+  initAudioContext,
   timerChange,
   setTimerChange,
   setSelectTimer,
@@ -19,6 +23,7 @@ const Button: React.VFC<Props> = ({
   setTime,
 }: Props) => {
   const [active, setActive] = useState(false);
+
   return (
     <Style>
       <input
@@ -26,6 +31,7 @@ const Button: React.VFC<Props> = ({
         type="button"
         value={time}
         onClick={() => {
+          initAudioContext('sign', 1, audioContext);
           setActive(!active);
           click(setTime, active);
           setSelectTimer(setTime);
