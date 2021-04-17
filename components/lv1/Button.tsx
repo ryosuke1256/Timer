@@ -43,7 +43,7 @@ const Button: React.VFC<Props> = ({
           setTimerChange(!timerChange);
         }}
       />
-      {initAudioOn ? <audio src="../../images/Silent.mp3" autoPlay /> : null}
+      {initAudioOn ? <audio src="../../images/pom.mp3" autoPlay /> : null}
       {audioOn ? <audio src="../../images/alarm.mp3" autoPlay /> : null}
     </Style>
   );
