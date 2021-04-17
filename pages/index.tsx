@@ -3,7 +3,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import Title from '../components/lv1/Title';
 import Timer from '../components/lv2/Timer';
-import Navigation from '../components/lv2/Navigation';
+import Navigation from '../components/lv2/NavigationBar';
 
 const index: React.FC = () => {
   const DynamicComponentWithNoSSR = dynamic(() => import('../components/lv1/Clock'), {
