@@ -1,9 +1,10 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import Button from '../lv1/Button';
 import TimeCounter from '../lv1/TimeCounter';
 import Text from '../lv1/Text';
+import styled from 'styled-components';
+import customMedia from '../../styles/customMedia';
 
 const Timer: React.VFC = () => {
   const [word, setWord] = useState('');
@@ -27,7 +28,7 @@ const Timer: React.VFC = () => {
     setWord('');
   }, [timerChange]);
 
-  const click = (setTime: number): void => {
+  const click = (setTime: number, active: boolean): void => {
     setCountStart(true);
     console.log('click');
     const sec = setTime / 1000;
@@ -39,10 +40,14 @@ const Timer: React.VFC = () => {
       setSlctMin(min);
     }
     console.log(setTime);
-    setTimeout(() => {
-      sound('sign', 1);
-      log(sec, min);
-    }, setTime);
+    if (active) {
+      useEffect(() => {
+        setTimeout(() => {
+          sound('sign', 1);
+          log(sec, min);
+        }, setTime);
+      }, [active]);
+    }
   };
 
   const sound = (type: any, sec: number): void => {
