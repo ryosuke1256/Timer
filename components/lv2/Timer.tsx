@@ -53,11 +53,11 @@ const Timer: React.VFC = () => {
     }
     console.log(setTime);
 
-    setTimeout(() => {
-      // sound('sign', 1);
-      initAudioContext('sign', 1, audioContext);
-      log(sec, min);
-    }, setTime);
+    // setTimeout(() => {
+    //   // sound('sign', 1);
+    //   initAudioContext('sign', 1, audioContext);
+    //   log(sec, min);
+    // }, setTime);
   };
 
   const sound = (type: any, sec: number): void => {
