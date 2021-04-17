@@ -13,8 +13,6 @@ type Props = {
 };
 
 const Button: React.VFC<Props> = ({
-  audioContext,
-  initAudioContext,
   timerChange,
   setTimerChange,
   setSelectTimer,
@@ -23,6 +21,7 @@ const Button: React.VFC<Props> = ({
   setTime,
 }: Props) => {
   const [active, setActive] = useState<boolean>(false);
+  const [initAudioOn, setInitAudioOn] = useState<boolean>(false);
   const [audioOn, setAudioOn] = useState<boolean>(false);
 
   const changeAudioOn = (setTime) => {
@@ -36,6 +35,7 @@ const Button: React.VFC<Props> = ({
         type="button"
         value={time}
         onClick={() => {
+          setInitAudioOn(true);
           changeAudioOn(setTime);
           setActive(!active);
           click(setTime, active);
@@ -43,6 +43,7 @@ const Button: React.VFC<Props> = ({
           setTimerChange(!timerChange);
         }}
       />
+      {initAudioOn ? <audio src="../../images/Silent.mp3" autoPlay /> : null}
       {audioOn ? <audio src="../../images/alarm.mp3" autoPlay /> : null}
     </Style>
   );
