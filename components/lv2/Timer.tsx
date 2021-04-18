@@ -6,7 +6,15 @@ import Text from '../lv1/Text';
 import styled from 'styled-components';
 import customMedia from '../../styles/customMedia';
 
-const Timer: React.VFC = () => {
+type Props = {
+  timerActive: boolean;
+};
+
+const Timer: React.VFC<Props> = ({ timerActive }: Props) => {
+  if (!timerActive) {
+    return null;
+  }
+
   const [word, setWord] = useState('');
   const [countStart, setCountStart] = useState(false);
   const [slctSec, setSlctSec] = useState<number>(0);
