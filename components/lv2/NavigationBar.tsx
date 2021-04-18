@@ -5,12 +5,13 @@ import NavTimer from '../lv1/NavTimer';
 
 type Props = {
   timerClick?: () => void;
+  clockClick?: () => void;
 };
 
-const NavigationBar: React.VFC<Props> = ({ timerClick }: Props) => {
+const NavigationBar: React.VFC<Props> = ({ timerClick, clockClick }: Props) => {
   return (
     <Styles>
-      <Navigation Style={Style} text="現在時刻" />
+      <Navigation Style={Style} text="現在時刻" clockClick={clockClick} />
       <NavTimer Style={Style} text="タイマー" timerClick={timerClick} />
       <Navigation Style={Style} text="ストップウォッチ" />
       <Navigation Style={Style} text="目覚まし時計" />

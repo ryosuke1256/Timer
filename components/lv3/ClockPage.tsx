@@ -4,16 +4,17 @@ import { Clock, NavigationBar } from '../lv2/_index2';
 type Props = {
   clockActive: boolean;
   timerClick: () => void;
+  clockClick: () => void;
 };
 
-const ClockPage: React.VFC<Props> = ({ clockActive, timerClick }: Props) => {
+const ClockPage: React.VFC<Props> = ({ clockActive, timerClick, clockClick }: Props) => {
   if (!clockActive) {
     return null;
   }
   return (
     <>
       <Clock />
-      <NavigationBar timerClick={timerClick} />
+      <NavigationBar timerClick={timerClick} clockClick={clockClick} />
     </>
   );
 };

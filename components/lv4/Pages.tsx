@@ -10,15 +10,23 @@ const Pages: React.VFC = () => {
   const timerClick = () => {
     setTimerActive(true);
     setClockActive(false);
-    setStopWatchActive(false);
-    setAlarmActive(false);
+    // setStopWatchActive(false);
+    // setAlarmActive(false);
   };
+
+  const clockClick = () => {
+    setTimerActive(false);
+    setClockActive(true);
+    // setStopWatchActive(false);
+    // setAlarmActive(false);
+  };
+
   console.log('render');
 
   return (
     <>
-      <ClockPage clockActive={clockActive} timerClick={timerClick} />
-      <TimerPage timerActive={timerActive} timerClick={timerClick} />
+      <ClockPage clockActive={clockActive} timerClick={timerClick} clockClick={clockClick} />
+      <TimerPage timerActive={timerActive} timerClick={timerClick} clockClick={clockClick} />
       <StopWatchPage stopWatchActive={stopWatchActive} />
       <AlarmPage alarmActive={alarmActive} />
     </>
