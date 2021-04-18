@@ -27,7 +27,8 @@ const Button: React.VFC<Props> = ({
 
   const changeAudioOn = (setTime) => {
     /*ここの処理はrenderが始まる前に行われてはいけない,useEffectも試したけどaudioのautoplayよりも
-    useEffectが優先されるらしい*/
+    useEffectが優先されるらしい,この書き方だと実行速度が遅い状況だと音が鳴らない
+    この書き方だとios鳴らないはsetTimeout咬ますとやっぱダメらしい*/
     setTimeout(() => {
       setClickSoundOn(false);
     }, 1000);
@@ -38,6 +39,14 @@ const Button: React.VFC<Props> = ({
 
   useEffect(() => {}, [clickSoundOn]);
 
+  const Clicked = () => {
+    if (clickSoundOn) {
+      return <audio src="../../images/pom.mp3" autoPlay />;
+    } else {
+      return null;
+    }
+  };
+
   return (
     <Style>
       <input
@@ -45,6 +54,7 @@ const Button: React.VFC<Props> = ({
         type="button"
         value={time}
         onClick={() => {
+          Clicked();
           setAudioCount(audioCount + 1);
           setClickSoundOn(true);
           changeAudioOn(setTime);
@@ -54,7 +64,7 @@ const Button: React.VFC<Props> = ({
           setTimerChange(!timerChange);
         }}
       />
-      {clickSoundOn ? <audio src="../../images/pom.mp3" autoPlay /> : null}
+      <Clicked />
       {audioOn ? <audio src="../../images/alarm.mp3" autoPlay /> : null}
     </Style>
   );
