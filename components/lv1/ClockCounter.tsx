@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useState } from 'react';
 
-const Clock: React.VFC = () => {
+const ClockCounter: React.VFC = () => {
   const now = new Date();
   const [hour, setHour] = useState(now.getHours());
   const [min, setMin] = useState(now.getMinutes());
@@ -20,7 +20,7 @@ const Clock: React.VFC = () => {
   );
 };
 
-export default Clock;
+export default ClockCounter;
 
 const Style = styled.div`
   font-size: 2rem;
