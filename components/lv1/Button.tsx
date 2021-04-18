@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 type Props = {
@@ -21,12 +21,22 @@ const Button: React.VFC<Props> = ({
   setTime,
 }: Props) => {
   const [active, setActive] = useState<boolean>(false);
-  const [initAudioOn, setInitAudioOn] = useState<boolean>(false);
+  const [clickSoundOn, setClickSoundOn] = useState<boolean>(false);
+  const [audioCount, setAudioCount] = useState<number>(0);
   const [audioOn, setAudioOn] = useState<boolean>(false);
 
   const changeAudioOn = (setTime) => {
-    setTimeout(() => setAudioOn(!audioOn), setTime);
+    /*ここの処理はrenderが始まる前に行われてはいけない,useEffectも試したけどaudioのautoplayよりも
+    useEffectが優先されるらしい*/
+    setTimeout(() => {
+      setClickSoundOn(false);
+    }, 400);
+    setTimeout(() => {
+      setAudioOn(!audioOn);
+    }, setTime);
   };
+
+  useEffect(() => {}, [clickSoundOn]);
 
   return (
     <Style>
@@ -35,7 +45,8 @@ const Button: React.VFC<Props> = ({
         type="button"
         value={time}
         onClick={() => {
-          setInitAudioOn(true);
+          setAudioCount(audioCount + 1);
+          setClickSoundOn(true);
           changeAudioOn(setTime);
           setActive(!active);
           click(setTime, active);
@@ -43,7 +54,7 @@ const Button: React.VFC<Props> = ({
           setTimerChange(!timerChange);
         }}
       />
-      {initAudioOn ? <audio src="../../images/pom.mp3" autoPlay /> : null}
+      {clickSoundOn ? <audio src="../../images/pom.mp3" autoPlay /> : null}
       {audioOn ? <audio src="../../images/alarm.mp3" autoPlay /> : null}
     </Style>
   );
