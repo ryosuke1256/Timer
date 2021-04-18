@@ -30,7 +30,7 @@ const Button: React.VFC<Props> = ({
     useEffectが優先されるらしい*/
     setTimeout(() => {
       setClickSoundOn(false);
-    }, 400);
+    }, 1000);
     setTimeout(() => {
       setAudioOn(!audioOn);
     }, setTime);
