@@ -16,6 +16,19 @@ const Timer: React.VFC = () => {
 
   const audioContext = useRef(null);
 
+  const sound = (type: any, sec: number): void => {
+    console.log('soundが鳴りました');
+    //Property 'webkitAudioContext' does not exist on type 'Window & typeof globalThis'
+    //が表示されるのでanyで退避
+    var ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+    // const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    osc.type = type;
+    osc.connect(ctx.destination);
+    osc.start(ctx.currentTime);
+    osc.stop(sec);
+  };
+
   function initAudioContext(type, sec, audioContext) {
     var audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     // const audioContext = new AudioContext();
@@ -58,19 +71,6 @@ const Timer: React.VFC = () => {
     //   initAudioContext('sign', 1, audioContext);
     //   log(sec, min);
     // }, setTime);
-  };
-
-  const sound = (type: any, sec: number): void => {
-    console.log('soundが鳴りました');
-    //Property 'webkitAudioContext' does not exist on type 'Window & typeof globalThis'
-    //が表示されるのでanyで退避
-    var ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
-    // const ctx = new AudioContext();
-    const osc = ctx.createOscillator();
-    osc.type = type;
-    osc.connect(ctx.destination);
-    osc.start(ctx.currentTime);
-    osc.stop(sec);
   };
 
   return (
